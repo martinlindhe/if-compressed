@@ -37,6 +37,9 @@ func main() {
 
 	presentResult("xz -5: ", compressXz(*file, 5))
 	presentResult("xz -9: ", compressXz(*file, 9))
+
+	presentResult("bro -5: ", compressBrotli(*file, 5))
+	presentResult("bro -9: ", compressBrotli(*file, 9))
 }
 
 func presentResult(title string, size int64) {
@@ -47,6 +50,28 @@ func presentResult(title string, size int64) {
 	}
 }
 
+func compressBrotli(fileName string, compressionLevel int) int64 {
+
+	outFileName := path.Join(os.TempDir(), randString(10)+".brot")
+
+	cmd := exec.Command("bro", "--quality", fmt.Sprintf("%d", compressionLevel), "--input", fileName, "--output", outFileName)
+
+	_, err := cmd.CombinedOutput()
+	if err != nil {
+		panic(err)
+	}
+
+	if !exists(outFileName) {
+		fmt.Println("ERROR FAIL")
+		return 0
+	}
+
+	size := getFileSize(outFileName)
+
+	os.Remove(outFileName)
+
+	return size
+}
 func compressXz(fileName string, compressionLevel int) int64 {
 
 	outFileName := path.Join(os.TempDir(), randString(10)+".xz")
