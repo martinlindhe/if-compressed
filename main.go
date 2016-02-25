@@ -30,7 +30,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	presentResult("in   : ", getFileSize(*file))
+	presentResult("in    : ", getFileSize(*file))
 	fmt.Println("")
 
 	presentResult("gz  -5: ", compressGzip(*file, 5))

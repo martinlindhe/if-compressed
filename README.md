@@ -1,9 +1,11 @@
 # About
 
-Command line tool to show resulting sizes of input file compressed with gzip and xz
+Command line tool to show resulting sizes of input file compressed with gzip, xz and brotli
 
 
 # Installation
+
+    brew install brotli xz
 
     go get -u github.com/martinlindhe/if-compressed
 
@@ -13,11 +15,15 @@ Command line tool to show resulting sizes of input file compressed with gzip and
 ```
 if-compressed public/js/app.d75add8a.js --human
 
-in   :  218 KiB
-gz -5:  50 KiB
-gz -9:  49 KiB
-xz -5:  43 KiB
-xz -9:  43 KiB
+in   :  225 KiB
+
+gz  -5:  51 KiB
+xz  -5:  44 KiB
+bro -5:  46 KiB
+
+gz  -9:  50 KiB
+xz  -9:  44 KiB
+bro -9:  45 KiB
 ```
 
 
