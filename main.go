@@ -31,14 +31,15 @@ func main() {
 	}
 
 	presentResult("in   : ", getFileSize(*file))
+	fmt.Println("")
 
-	presentResult("gz -5: ", compressGzip(*file, 5))
-	presentResult("gz -9: ", compressGzip(*file, 9))
-
-	presentResult("xz -5: ", compressXz(*file, 5))
-	presentResult("xz -9: ", compressXz(*file, 9))
-
+	presentResult("gz  -5: ", compressGzip(*file, 5))
+	presentResult("xz  -5: ", compressXz(*file, 5))
 	presentResult("bro -5: ", compressBrotli(*file, 5))
+	fmt.Println("")
+
+	presentResult("gz  -9: ", compressGzip(*file, 9))
+	presentResult("xz  -9: ", compressXz(*file, 9))
 	presentResult("bro -9: ", compressBrotli(*file, 9))
 }
 
